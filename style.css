@@ -58,3 +58,11 @@ small {
   font-size: 12px;
   opacity: 0.85;
 }
+.pay {
+  background: #00b1ea; /* color MercadoPago */
+  margin-bottom: 10px;
+}
+
+.pay:hover {
+  background: #0096c7;
+}
