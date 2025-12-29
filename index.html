@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
   <div class="card">
     <h1>🎵 Pack Musical Profesional</h1>
     <h2>Iván M. Innova Group</h2>
@@ -19,50 +20,50 @@
       ✔ Música organizada por géneros
     </p>
 
-<button class="btn pay" onclick="pagar()">
- 💳 Pagar Pack Musical
-</button>
+    <!-- BOTÓN REAL DE PAGO -->
+    <button class="btn pay" onclick="pagar()">
+      💳 Pagar Pack Musical
+    </button>
 
-<script>
-async function pagar() {
-  try {
-    const res = await fetch(
-      "https://ivanm-backend-ok.vercel.app/api/create-checkout"
-    );
-    const data = await res.json();
-    window.location.href = data.init_point;
-  } catch (e) {
-    alert("Error al conectar con Mercado Pago");
-  }
-}
-</script>
+    <small style="display:block; margin-top:15px; opacity:0.8;">
+      Descarga segura mediante Google Drive
+    </small>
 
+    <hr style="margin:30px 0; opacity:0.3;">
 
-        ⬇ Descargar Pack Musical
-      </a>
-    </div>
+    <p style="font-size:13px; opacity:0.85;">
+      <strong>Vendedor:</strong> Iván M. Innova Group<br>
+      <strong>Producto:</strong> Pack Musical Digital (descarga)<br>
+      <strong>Entrega:</strong> Automática vía Google Drive después del pago<br>
+      <strong>Contacto:</strong> ivanmunozsolis37@gmail.com
+    </p>
 
-    <small>Descarga segura mediante Google Drive</small>
+    <p style="font-size:12px; opacity:0.6;">
+      Este es un producto digital. No se realizan devoluciones una vez entregado el acceso.
+    </p>
   </div>
 
+  <!-- SCRIPT DE CONEXIÓN AL BACKEND -->
   <script>
-    function pagoPrueba() {
-      alert("✅ Pago aprobado (MODO PRUEBA)");
-      document.getElementById("descarga").style.display = "block";
+    async function pagar() {
+      try {
+        const response = await fetch(
+          "https://ivanm-backend-ok.vercel.app/api/create-checkout"
+        );
+
+        const data = await response.json();
+
+        if (data.init_point) {
+          window.location.href = data.init_point;
+        } else {
+          alert("Error creando el pago");
+        }
+
+      } catch (error) {
+        alert("Error al conectar con Mercado Pago");
+      }
     }
   </script>
-  <hr style="margin:30px 0; opacity:0.3;">
-
-<p style="font-size:13px; opacity:0.8;">
-<strong>Vendedor:</strong> Iván M. Innova Group<br>
-<strong>Producto:</strong> Pack Musical Digital (descarga)<br>
-<strong>Entrega:</strong> Automática vía Google Drive después del pago<br>
-<strong>Contacto:</strong> ivanmunozsolis37@gmail.com
-</p>
-
-<p style="font-size:12px; opacity:0.6;">
-Este es un producto digital. No se realizan devoluciones una vez entregado el acceso.
-</p>
 
 </body>
 </html>
