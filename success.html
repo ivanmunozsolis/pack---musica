@@ -3,54 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <title>Pago Pack Musical</title>
-  <style>
-    body {
-      background:#0b132b;
-      color:white;
-      font-family:Arial;
-      text-align:center;
-      padding-top:100px;
-    }
-    .box {
-      background:#1c2541;
-      padding:30px;
-      border-radius:10px;
-      width:300px;
-      margin:auto;
-    }
-    a {
-      display:inline-block;
-      margin-top:20px;
-      padding:12px 20px;
-      background:#3a86ff;
-      color:white;
-      text-decoration:none;
-      border-radius:6px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="box" id="ok" style="display:none">
-  <h2>✅ Pago aprobado</h2>
-  <a href="https://drive.google.com/drive/folders/1LbfrGhbOX7SSV223LORKR6r_Jxa1gFPv"
-     target="_blank">
-     ⬇ Descargar Pack Musical
-  </a>
-</div>
-
-<div class="box" id="fail" style="display:none">
-  <h2>❌ Pago no válido</h2>
+<div class="card">
+  <h1>🎵 Pack Musical Profesional</h1>
+  <div id="estado"></div>
 </div>
 
 <script>
-const status = new URLSearchParams(window.location.search).get("status");
+  const params = new URLSearchParams(window.location.search);
+  const status = params.get("status");
 
-if (status === "approved") {
-  document.getElementById("ok").style.display = "block";
-} else {
-  document.getElementById("fail").style.display = "block";
-}
+  if (status === "approved") {
+    document.getElementById("estado").innerHTML = `
+      <p style="color:#00ff99;font-size:18px;">✅ Pago aprobado</p>
+      <a class="btn pay" href="https://drive.google.com/drive/folders/1LbfGhbOXX7SSV223LORKR6r_Jxa1gFPv" target="_blank">
+        ⬇️ Descargar Pack Musical
+      </a>
+    `;
+  } else {
+    document.getElementById("estado").innerHTML = `
+      <p style="color:red;">❌ Acceso inválido</p>
+    `;
+  }
 </script>
 
 </body>
