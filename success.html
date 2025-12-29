@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Procesando pago...</title>
+</head>
+<body>
+  <h2>⏳ Verificando tu pago...</h2>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+
+    if (!token) {
+      document.body.innerHTML = "<h3>❌ Token no encontrado</h3>";
+    } else {
+      fetch("https://ivanm-backend-ok.vercel.app/api/verify-payment?token=" + token)
+        .then(res => res.json())
+        .then(data => {
+          if (data.valid && data.downloadUrl) {
+            window.location.href = data.downloadUrl;
+          } else {
+            document.body.innerHTML = "<h3>❌ Pago no válido</h3>";
+          }
+        })
+        .catch(() => {
+          document.body.innerHTML = "<h3>⚠️ Error de conexión</h3>";
+        });
+    }
+  </script>
+</body>
+</html>
