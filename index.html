@@ -19,24 +19,24 @@
       ✔ Música organizada por géneros
     </p>
 
-    <!-- BOTÓN PAGO SIMULADO -->
-    <button class="btn pay" onclick="pagoPrueba()">
-      💳 Pagar Pack Musical
-    </button>
-
-    <!-- DESCARGA OCULTA -->
-    <div id="descarga" style="display:none; margin-top:20px;">
-      <button class="btn pay" onclick="pagar()">
-💳 Pagar Pack Musical
+<button class="btn pay" onclick="pagar()">
+ 💳 Pagar Pack Musical
 </button>
 
 <script>
-function pagar() {
-  // modo prueba (simula pago aprobado)
-  alert("✅ Pago aprobado (MODO PRUEBA)");
-  window.location.href = "success.html";
+async function pagar() {
+  try {
+    const res = await fetch(
+      "https://ivanm-backend-ok.vercel.app/api/create-checkout"
+    );
+    const data = await res.json();
+    window.location.href = data.init_point;
+  } catch (e) {
+    alert("Error al conectar con Mercado Pago");
+  }
 }
 </script>
+
 
         ⬇ Descargar Pack Musical
       </a>
