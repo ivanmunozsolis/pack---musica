@@ -1,54 +1,86 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Pago Exitoso</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      background: #0b1220;
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    .box {
-      background: #111a2e;
-      padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(0,0,0,.6);
-    }
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 22px;
-      background: #1e90ff;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Descarga Pack Musical</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  background:#0b1020;
+  color:#fff;
+  font-family:Arial, sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+.card {
+  background:#111830;
+  padding:30px;
+  border-radius:12px;
+  width:360px;
+  text-align:center;
+  box-shadow:0 0 25px rgba(0,0,0,.5);
+}
+.btn {
+  display:block;
+  margin-top:20px;
+  padding:14px;
+  background:#1e90ff;
+  color:#fff;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
+}
+.error {
+  color:#ff6b6b;
+}
+.ok {
+  color:#4cd137;
+}
+</style>
 </head>
+
 <body>
+<div class="card">
+  <h2>🎵 Pack Musical Profesional</h2>
+  <p id="estado">Verificando pago...</p>
 
-  <div class="box">
-    <h1>✅ Pago aprobado</h1>
-    <p>Gracias por tu compra</p>
+  <a id="descargar"
+     href="https://drive.google.com/drive/folders/1LbfGhbOX7SSV223LORKR6r_Jxa1gFPv"
+     class="btn"
+     style="display:none"
+     target="_blank">
+     ⬇ Descargar Pack Musical
+  </a>
+</div>
 
-    <!-- 🔴 PEGA AQUÍ TU LINK REAL DE DRIVE -->
-    <a href="https://drive.google.com/drive/folders/1LbfrGhbOX7SSV223L0RkR6r_Jxa1gFPv?usp=sharing"
-       target="_blank">
-       ⬇ Descargar Pack Musical
-    </a>
+<script>
+const params = new URLSearchParams(window.location.search);
+const token = params.get("token");
 
-    <p style="margin-top:15px;font-size:12px;opacity:.7">
-      Descarga segura desde Google Drive
-    </p>
-  </div>
-
+if (!token) {
+  document.getElementById("estado").innerHTML =
+    "<span class='error'>❌ Acceso inválido</span>";
+} else {
+  fetch("https://ivanm-backend-ok.vercel.app/api/verify-payment?token=" + token)
+    .then(r => r.json())
+    .then(data => {
+      if (data.valid) {
+        document.getElementById("estado").innerHTML =
+          "<span class='ok'>✅ Pago aprobado</span>";
+        document.getElementById("descargar").style.display = "block";
+      } else {
+        document.getElementById("estado").innerHTML =
+          "<span class='error'>❌ Pago no válido</span>";
+      }
+    })
+    .catch(() => {
+      document.getElementById("estado").innerHTML =
+        "<span class='error'>❌ Error de verificación</span>";
+    });
+}
+</script>
 </body>
 </html>
