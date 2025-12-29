@@ -2,104 +2,127 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Descarga | Pack Musical Profesional</title>
+  <title>Pago | Pack Musical Profesional</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
       margin: 0;
       height: 100vh;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #0b1a3a, #020617);
+      background: radial-gradient(circle at top, #0a1a3a, #020814);
       display: flex;
       justify-content: center;
       align-items: center;
-      color: #fff;
+      font-family: Arial, sans-serif;
+      color: white;
     }
 
     .card {
-      background: rgba(15, 25, 55, 0.9);
-      padding: 30px;
-      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+      padding: 40px;
+      border-radius: 16px;
       text-align: center;
-      max-width: 360px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+      max-width: 380px;
       width: 90%;
-      box-shadow: 0 0 40px rgba(0,0,0,.6);
     }
 
     h1 {
       margin-top: 0;
-      font-size: 20px;
+      font-size: 22px;
     }
 
     .ok {
-      color: #22c55e;
+      color: #00ff88;
       font-weight: bold;
       margin: 15px 0;
     }
 
     .error {
-      color: #ef4444;
+      color: #ff5555;
       font-weight: bold;
       margin: 15px 0;
     }
 
-    a.btn {
-      display: inline-block;
-      background: #0ea5e9;
-      color: #fff;
+    .btn {
+      display: none;
+      margin-top: 25px;
       padding: 14px 22px;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      border: none;
       border-radius: 10px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
       text-decoration: none;
       font-weight: bold;
-      margin-top: 10px;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
     }
 
     small {
       display: block;
-      opacity: 0.7;
-      margin-top: 12px;
+      margin-top: 18px;
+      opacity: 0.6;
       font-size: 12px;
     }
   </style>
 </head>
 <body>
 
-<div class="card" id="content">
-  <h1>🎵 Pack Musical Profesional</h1>
-  <p>Verificando pago…</p>
-</div>
+  <div class="card">
+    <h1>🎵 Pack Musical Profesional</h1>
+
+    <div id="status">Validando tu pago…</div>
+
+    <a
+      id="downloadBtn"
+      class="btn"
+      href="https://drive.google.com/drive/folders/1LbGhbOXX7SSV223LORKR6r_Jxa1gFPv"
+      target="_blank"
+    >
+      ⬇ Descargar Pack Musical
+    </a>
+
+    <small>
+      Vendedor: Iván M. Innova Group<br>
+      Producto digital – no reembolsable
+    </small>
+  </div>
 
 <script>
+(async () => {
+  const statusDiv = document.getElementById("status");
+  const btn = document.getElementById("downloadBtn");
+
   const params = new URLSearchParams(window.location.search);
+  const paymentId = params.get("payment_id");
 
-  const status =
-    params.get("status") ||
-    params.get("collection_status") ||
-    params.get("payment_status");
-
-  const box = document.getElementById("content");
-
-  // 👉 TU LINK REAL DE GOOGLE DRIVE (CARPETA)
-  const DRIVE_LINK =
-    "https://drive.google.com/drive/folders/1LbfrGhbOX7SSV223L0RkR6r_Jxa1gFPv?usp=sharing";
-
-  if (status === "approved") {
-    box.innerHTML = `
-      <h1>🎵 Pack Musical Profesional</h1>
-      <p class="ok">✅ Pago aprobado</p>
-      <a class="btn" href="${DRIVE_LINK}" target="_blank">
-        ⬇️ Descargar Pack Musical
-      </a>
-      <small>Descarga segura mediante Google Drive</small>
-    `;
-  } else {
-    box.innerHTML = `
-      <h1>🎵 Pack Musical Profesional</h1>
-      <p class="error">❌ Pago no aprobado</p>
-      <small>Si ya pagaste, revisa tu correo o contáctanos.</small>
-    `;
+  if (!paymentId) {
+    statusDiv.innerHTML = "<div class='error'>❌ Pago no identificado</div>";
+    return;
   }
+
+  try {
+    const res = await fetch(
+      "https://ivanm-backend-ok.vercel.app/api/verify-payment?payment_id=" + paymentId
+    );
+
+    const data = await res.json();
+
+    if (data.approved) {
+      statusDiv.innerHTML = "<div class='ok'>✅ Pago aprobado</div>";
+      btn.style.display = "inline-block";
+    } else {
+      statusDiv.innerHTML = "<div class='error'>⏳ Pago no aprobado</div>";
+    }
+
+  } catch (e) {
+    statusDiv.innerHTML = "<div class='error'>❌ Error validando el pago</div>";
+  }
+})();
 </script>
 
 </body>
