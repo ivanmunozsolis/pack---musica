@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Procesando pago...</title>
+  <meta charset="UTF-8">
+  <title>Pago Exitoso</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #0b1220;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .box {
+      background: #111a2e;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0,0,0,.6);
+    }
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 22px;
+      background: #1e90ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <h2>⏳ Verificando tu pago...</h2>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
+  <div class="box">
+    <h1>✅ Pago aprobado</h1>
+    <p>Gracias por tu compra</p>
 
-    if (!token) {
-      document.body.innerHTML = "<h3>❌ Token no encontrado</h3>";
-    } else {
-      fetch("https://ivanm-backend-ok.vercel.app/api/verify-payment?token=" + token)
-        .then(res => res.json())
-        .then(data => {
-          if (data.valid && data.downloadUrl) {
-            window.location.href = data.downloadUrl;
-          } else {
-            document.body.innerHTML = "<h3>❌ Pago no válido</h3>";
-          }
-        })
-        .catch(() => {
-          document.body.innerHTML = "<h3>⚠️ Error de conexión</h3>";
-        });
-    }
-  </script>
+    <!-- 🔴 PEGA AQUÍ TU LINK REAL DE DRIVE -->
+    <a href="https://drive.google.com/drive/folders/PEGA_AQUI_TU_LINK"
+       target="_blank">
+       ⬇ Descargar Pack Musical
+    </a>
+
+    <p style="margin-top:15px;font-size:12px;opacity:.7">
+      Descarga segura desde Google Drive
+    </p>
+  </div>
+
 </body>
 </html>
