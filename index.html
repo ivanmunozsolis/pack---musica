@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Pack Musical Profesional</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -13,24 +13,22 @@
     <h2>Iván M. Innova Group</h2>
 
     <p>
-      ✔ Más de 2000 canciones<br />
-      ✔ Pack completo (8 GB)<br />
-      ✔ Ideal para rockolas, DJs y negocios<br />
+      ✔ Más de 2000 canciones<br>
+      ✔ Pack completo (8 GB)<br>
+      ✔ Ideal para rockolas, DJs y negocios<br>
       ✔ Música organizada por géneros
     </p>
 
-    <!-- BOTÓN PAGAR (MODO PRUEBA) -->
-    <button class="btn pay" onclick="simularPago()">
+    <!-- BOTÓN PAGO SIMULADO -->
+    <button class="btn pay" onclick="pagoPrueba()">
       💳 Pagar Pack Musical
     </button>
 
-    <!-- DESCARGA (OCULTA) -->
+    <!-- DESCARGA OCULTA -->
     <div id="descarga" style="display:none; margin-top:20px;">
-      <a
-        class="btn"
-        href="https://drive.google.com/drive/folders/1LbfrGhbOX7SSV223L0RKR6r_Jxa1gFPv?usp=sharing"
-        target="_blank"
-      >
+      <a class="btn"
+         href="https://drive.google.com/drive/folders/1LbfrGhbOX7SSV223L0RKR6r_Jxa1gFPv?usp=sharing"
+         target="_blank">
         ⬇ Descargar Pack Musical
       </a>
     </div>
@@ -39,7 +37,7 @@
   </div>
 
   <script>
-    function simularPago() {
+    function pagoPrueba() {
       alert("✅ Pago aprobado (MODO PRUEBA)");
       document.getElementById("descarga").style.display = "block";
     }
