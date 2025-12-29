@@ -1,34 +1,100 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Pago Pack Musical</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Descarga | Pack Musical Profesional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #0b1a3a, #020617);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .card {
+      background: rgba(15, 25, 55, 0.85);
+      padding: 30px 25px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(0,0,0,.6);
+      max-width: 360px;
+      width: 90%;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 20px;
+    }
+
+    .ok {
+      color: #22c55e;
+      font-weight: bold;
+      margin: 12px 0 20px;
+    }
+
+    .error {
+      color: #ef4444;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    a.btn {
+      display: inline-block;
+      background: #0ea5e9;
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    small {
+      display: block;
+      opacity: 0.7;
+      margin-top: 12px;
+      font-size: 12px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="card">
-  <h1>🎵 Pack Musical Profesional</h1>
-  <div id="estado"></div>
-</div>
+  <div class="card" id="content">
+    <h1>🎵 Pack Musical Profesional</h1>
+    <p>Cargando estado del pago…</p>
+  </div>
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const status = params.get("status");
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get("status");
+    const box = document.getElementById("content");
 
-  if (status === "approved") {
-    document.getElementById("estado").innerHTML = `
-      <p style="color:#00ff99;font-size:18px;">✅ Pago aprobado</p>
-      <a class="btn pay" href="https://drive.google.com/drive/folders/1LbfGhbOXX7SSV223LORKR6r_Jxa1gFPv" target="_blank">
-        ⬇️ Descargar Pack Musical
-      </a>
-    `;
-  } else {
-    document.getElementById("estado").innerHTML = `
-      <p style="color:red;">❌ Acceso inválido</p>
-    `;
-  }
-</script>
+    // 👉 PON AQUÍ TU LINK REAL DE GOOGLE DRIVE (CARPETA O ARCHIVO)
+    const DRIVE_LINK = "https://drive.google.com/drive/folders/1LbfGhbOXX7SSV223LORKR6r_Jxa1gFPv";
+
+    if (status === "approved") {
+      box.innerHTML = `
+        <h1>🎵 Pack Musical Profesional</h1>
+        <p class="ok">✅ Pago aprobado</p>
+        <a class="btn" href="${DRIVE_LINK}" target="_blank">
+          ⬇️ Descargar Pack Musical
+        </a>
+        <small>Descarga segura mediante Google Drive</small>
+      `;
+    } else {
+      box.innerHTML = `
+        <h1>🎵 Pack Musical Profesional</h1>
+        <p class="error">❌ Acceso inválido</p>
+        <small>El pago no fue aprobado.</small>
+      `;
+    }
+  </script>
 
 </body>
 </html>
