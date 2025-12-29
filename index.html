@@ -26,9 +26,18 @@
 
     <!-- DESCARGA OCULTA -->
     <div id="descarga" style="display:none; margin-top:20px;">
-      <a class="btn"
-         href="https://drive.google.com/drive/folders/1LbfrGhbOX7SSV223L0RKR6r_Jxa1gFPv?usp=sharing"
-         target="_blank">
+      <button class="btn pay" onclick="pagar()">
+💳 Pagar Pack Musical
+</button>
+
+<script>
+function pagar() {
+  // modo prueba (simula pago aprobado)
+  alert("✅ Pago aprobado (MODO PRUEBA)");
+  window.location.href = "success.html";
+}
+</script>
+
         ⬇ Descargar Pack Musical
       </a>
     </div>
