@@ -19,60 +19,29 @@
       ✔ Música organizada por géneros
     </p>
 
-    <!-- BOTÓN PAGAR -->
-    <button class="btn pay" onclick="pagar()">
+    <!-- BOTÓN PAGAR (MODO PRUEBA) -->
+    <button class="btn pay" onclick="simularPago()">
       💳 Pagar Pack Musical
     </button>
 
-    <!-- BOTÓN DESCARGA -->
+    <!-- DESCARGA (OCULTA) -->
     <div id="descarga" style="display:none; margin-top:20px;">
       <a
         class="btn"
-        href="https://drive.google.com/drive/folders/1LbfrGhbOX7SSV223LQRkR6r_Jxa1gFPv?usp=sharing"
+        href="https://drive.google.com/drive/folders/1LbfrGhbOX7SSV223L0RKR6r_Jxa1gFPv?usp=sharing"
         target="_blank"
       >
         ⬇ Descargar Pack Musical
       </a>
-      <p style="font-size:12px; margin-top:10px;">
-        Descarga segura mediante Google Drive
-      </p>
     </div>
+
+    <small>Descarga segura mediante Google Drive</small>
   </div>
 
   <script>
-    const BACKEND = "https://ivanm-backend-ok.vercel.app";
-
-    async function pagar() {
-      try {
-        const res = await fetch(`${BACKEND}/api/create-checkout`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" }
-        });
-
-        const data = await res.json();
-
-        if (data.init_point) {
-          window.location.href = data.init_point;
-        } else {
-          alert("No se pudo iniciar el pago");
-        }
-      } catch (err) {
-        alert("Error de conexión con el servidor");
-      }
-    }
-
-    // VERIFICAR PAGO AL VOLVER
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get("token");
-
-    if (token) {
-      fetch(`${BACKEND}/api/verify-payment?token=${token}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.valid) {
-            document.getElementById("descarga").style.display = "block";
-          }
-        });
+    function simularPago() {
+      alert("✅ Pago aprobado (MODO PRUEBA)");
+      document.getElementById("descarga").style.display = "block";
     }
   </script>
 </body>
