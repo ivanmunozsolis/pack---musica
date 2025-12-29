@@ -6,12 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
-  <script>
-  const params = new URLSearchParams(window.location.search);
-  if (params.get("pagado") === "1") {
-    document.getElementById("descarga").style.display = "block";
-  }
-</script>
 
 <body>
 
@@ -25,24 +19,69 @@
     ✔ Ideal para rockolas, DJs y negocios<br>
     ✔ Música organizada por géneros
   </p>
-<a class="btn pay"
-   href="https://mpago.la/2K1uTTS"
-   target="_blank">
-   💳 Pagar Pack Musical
-</a>
 
+  <!-- BOTÓN DE PAGO -->
+  <button class="btn pay" onclick="pagar()">
+    💳 Pagar Pack Musical
+  </button>
 
-
-<div id="descarga" style="display:none;">
-  <a class="btn"
-     href="https://drive.google.com/drive/folders/1LbfrGhbOX7SSV223L0RkR6r_Jxa1gFPv?usp=sharing"
-     target="_blank">
-     ⬇ Descargar Pack Musical
-  </a>
+  <!-- DESCARGA (OCULTA HASTA VALIDACIÓN) -->
+  <div id="descarga" style="display:none; margin-top:20px;">
+    <a class="btn"
+       href="https://drive.google.com/drive/folders/https://drive.google.com/drive/folders/1LbfrGhbOX7SSV223L0RkR6r_Jxa1gFPv?usp=sharing"
+       target="_blank">
+       ⬇ Descargar Pack Musical
+    </a>
+    <small>Descarga segura mediante Google Drive</small>
+  </div>
 </div>
 
-  <small>Descarga segura mediante Google Drive</small>
-</div>
+<script>
+/* 1️⃣ INICIAR PAGO */
+async function pagar() {
+  try {
+    const res = await fetch("https://ivanm-backend-ok.vercel.app/api/create-checkout", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        producto: "Pack Musical",
+        precio: 10
+      })
+    });
+
+    const data = await res.json();
+
+    if (data.init_point) {
+      window.location.href = data.init_point;
+    } else {
+      alert("Error al iniciar el pago");
+    }
+  } catch (err) {
+    alert("Error de conexión");
+  }
+}
+
+/* 2️⃣ VERIFICAR PAGO AL VOLVER */
+(async function verificarPago() {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get("token");
+
+  if (!token) return;
+
+  try {
+    const res = await fetch(
+      "https://ivanm-backend-ok.vercel.app/api/verify-payment?token=" + token
+    );
+    const data = await res.json();
+
+    if (data.valid) {
+      document.getElementById("descarga").style.display = "block";
+    }
+  } catch (err) {
+    console.error("Error verificando pago");
+  }
+})();
+</script>
 
 </body>
 </html>
