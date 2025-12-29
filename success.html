@@ -1,86 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Descarga Pack Musical</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-body {
-  background:#0b1020;
-  color:#fff;
-  font-family:Arial, sans-serif;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
-}
-.card {
-  background:#111830;
-  padding:30px;
-  border-radius:12px;
-  width:360px;
-  text-align:center;
-  box-shadow:0 0 25px rgba(0,0,0,.5);
-}
-.btn {
-  display:block;
-  margin-top:20px;
-  padding:14px;
-  background:#1e90ff;
-  color:#fff;
-  text-decoration:none;
-  border-radius:8px;
-  font-weight:bold;
-}
-.error {
-  color:#ff6b6b;
-}
-.ok {
-  color:#4cd137;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>Pago Pack Musical</title>
+  <style>
+    body {
+      background:#0b132b;
+      color:white;
+      font-family:Arial;
+      text-align:center;
+      padding-top:100px;
+    }
+    .box {
+      background:#1c2541;
+      padding:30px;
+      border-radius:10px;
+      width:300px;
+      margin:auto;
+    }
+    a {
+      display:inline-block;
+      margin-top:20px;
+      padding:12px 20px;
+      background:#3a86ff;
+      color:white;
+      text-decoration:none;
+      border-radius:6px;
+    }
+  </style>
 </head>
-
 <body>
-<div class="card">
-  <h2>🎵 Pack Musical Profesional</h2>
-  <p id="estado">Verificando pago...</p>
 
-  <a id="descargar"
-     href="https://drive.google.com/drive/folders/1LbfGhbOX7SSV223LORKR6r_Jxa1gFPv"
-     class="btn"
-     style="display:none"
+<div class="box" id="ok" style="display:none">
+  <h2>✅ Pago aprobado</h2>
+  <a href="https://drive.google.com/drive/folders/1LbfrGhbOX7SSV223LORKR6r_Jxa1gFPv"
      target="_blank">
      ⬇ Descargar Pack Musical
   </a>
 </div>
 
-<script>
-const params = new URLSearchParams(window.location.search);
-const token = params.get("token");
+<div class="box" id="fail" style="display:none">
+  <h2>❌ Pago no válido</h2>
+</div>
 
-if (!token) {
-  document.getElementById("estado").innerHTML =
-    "<span class='error'>❌ Acceso inválido</span>";
+<script>
+const status = new URLSearchParams(window.location.search).get("status");
+
+if (status === "approved") {
+  document.getElementById("ok").style.display = "block";
 } else {
-  fetch("https://ivanm-backend-ok.vercel.app/api/verify-payment?token=" + token)
-    .then(r => r.json())
-    .then(data => {
-      if (data.valid) {
-        document.getElementById("estado").innerHTML =
-          "<span class='ok'>✅ Pago aprobado</span>";
-        document.getElementById("descargar").style.display = "block";
-      } else {
-        document.getElementById("estado").innerHTML =
-          "<span class='error'>❌ Pago no válido</span>";
-      }
-    })
-    .catch(() => {
-      document.getElementById("estado").innerHTML =
-        "<span class='error'>❌ Error de verificación</span>";
-    });
+  document.getElementById("fail").style.display = "block";
 }
 </script>
+
 </body>
 </html>
