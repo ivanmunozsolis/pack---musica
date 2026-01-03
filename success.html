@@ -1,73 +1,115 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <title>Pago confirmado</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
   <style>
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      background: #f5f6f7;
-      text-align: center;
-      padding: 40px;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
+
     .box {
-      background: white;
+      background: #0b1220;
       max-width: 420px;
-      margin: auto;
+      width: 100%;
       padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+      text-align: center;
     }
+
+    h2 {
+      margin-top: 0;
+    }
+
     .ok {
-      color: green;
+      color: #22c55e;
       font-size: 20px;
       margin-bottom: 15px;
     }
+
     .error {
-      color: red;
+      color: #ef4444;
       font-size: 18px;
     }
+
     a.download {
       display: inline-block;
       margin-top: 20px;
-      padding: 14px 22px;
-      background: #0a7cff;
-      color: white;
+      padding: 14px 24px;
+      background: #0ea5e9;
+      color: #fff;
       text-decoration: none;
-      border-radius: 8px;
+      border-radius: 10px;
       font-size: 16px;
+      transition: background .2s;
+    }
+
+    a.download:hover {
+      background: #0284c7;
+    }
+
+    .info {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #94a3b8;
     }
   </style>
 </head>
 <body>
 
-<div class="box">
-  <h2>Estado del pago</h2>
-  <div id="resultado">Procesando...</div>
-</div>
+  <div class="box">
+    <h2>Estado del pago</h2>
+    <div id="resultado">Verificando pago...</div>
+  </div>
 
-<script>
-  const params = new URLSearchParams(window.location.search);
-  const status = params.get("collection_status");
+  <script>
+    const params = new URLSearchParams(window.location.search);
 
-  const resultado = document.getElementById("resultado");
+    // Mercado Pago puede mandar cualquiera de estos
+    const status =
+      params.get("collection_status") ||
+      params.get("status") ||
+      params.get("payment_status") ||
+      "";
 
-  if (status === "approved") {
-    resultado.innerHTML = `
-      <div class="ok">✅ Pago aprobado</div>
-      <p>Gracias por tu compra</p>
-      <a class="download" href="https://drive.google.com/drive/folders/PEGA_AQUI_TU_LINK_REAL" target="_blank">
-        ⬇ Descargar Pack Musical
-      </a>
-    `;
-  } else {
-    resultado.innerHTML = `
-      <div class="error">❌ El pago no fue aprobado</div>
-      <p>Si pagaste, espera unos minutos o contáctanos.</p>
-    `;
-  }
-</script>
+    const statusFinal = status.toLowerCase();
+    const resultado = document.getElementById("resultado");
+
+    if (statusFinal === "approved") {
+      resultado.innerHTML = `
+        <div class="ok">✅ Pago aprobado</div>
+        <p>Gracias por tu compra</p>
+
+        <a class="download"
+           href="https://drive.google.com/drive/folders/PEGA_AQUI_TU_LINK_REAL"
+           target="_blank">
+          ⬇ Descargar Pack Musical
+        </a>
+
+        <div class="info">
+          Si tienes problemas con la descarga, contáctanos.
+        </div>
+      `;
+    } else {
+      resultado.innerHTML = `
+        <div class="error">⚠ Pago no confirmado</div>
+        <p>
+          Si ya pagaste, espera unos minutos y vuelve a abrir este enlace.<br>
+          Mercado Pago a veces tarda en confirmar.
+        </p>
+      `;
+    }
+  </script>
 
 </body>
 </html>
