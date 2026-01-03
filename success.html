@@ -1,128 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Pago | Pack Musical Profesional</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta charset="UTF-8" />
+  <title>Pago confirmado</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <style>
     body {
-      margin: 0;
-      height: 100vh;
-      background: radial-gradient(circle at top, #0a1a3a, #020814);
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-family: Arial, sans-serif;
-      color: white;
-    }
-
-    .card {
-      background: rgba(255,255,255,0.05);
-      padding: 40px;
-      border-radius: 16px;
+      background: #f5f6f7;
       text-align: center;
-      box-shadow: 0 0 30px rgba(0,0,0,0.6);
-      max-width: 380px;
-      width: 90%;
+      padding: 40px;
     }
-
-    h1 {
-      margin-top: 0;
-      font-size: 22px;
+    .box {
+      background: white;
+      max-width: 420px;
+      margin: auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-
     .ok {
-      color: #00ff88;
-      font-weight: bold;
-      margin: 15px 0;
+      color: green;
+      font-size: 20px;
+      margin-bottom: 15px;
     }
-
     .error {
-      color: #ff5555;
-      font-weight: bold;
-      margin: 15px 0;
+      color: red;
+      font-size: 18px;
     }
-
-    .btn {
-      display: none;
-      margin-top: 25px;
+    a.download {
+      display: inline-block;
+      margin-top: 20px;
       padding: 14px 22px;
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
-      border: none;
-      border-radius: 10px;
+      background: #0a7cff;
       color: white;
-      font-size: 16px;
-      cursor: pointer;
       text-decoration: none;
-      font-weight: bold;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-    }
-
-    small {
-      display: block;
-      margin-top: 18px;
-      opacity: 0.6;
-      font-size: 12px;
+      border-radius: 8px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
 
-  <div class="card">
-    <h1>🎵 Pack Musical Profesional</h1>
-
-    <div id="status">Validando tu pago…</div>
-
-    <a
-      id="downloadBtn"
-      class="btn"
-      href="https://drive.google.com/drive/folders/1LbGhbOXX7SSV223LORKR6r_Jxa1gFPv"
-      target="_blank"
-    >
-      ⬇ Descargar Pack Musical
-    </a>
-
-    <small>
-      Vendedor: Iván M. Innova Group<br>
-      Producto digital – no reembolsable
-    </small>
-  </div>
+<div class="box">
+  <h2>Estado del pago</h2>
+  <div id="resultado">Procesando...</div>
+</div>
 
 <script>
-(async () => {
-  const statusDiv = document.getElementById("status");
-  const btn = document.getElementById("downloadBtn");
-
   const params = new URLSearchParams(window.location.search);
-  const paymentId = params.get("payment_id");
+  const status = params.get("collection_status");
 
-  if (!paymentId) {
-    statusDiv.innerHTML = "<div class='error'>❌ Pago no identificado</div>";
-    return;
+  const resultado = document.getElementById("resultado");
+
+  if (status === "approved") {
+    resultado.innerHTML = `
+      <div class="ok">✅ Pago aprobado</div>
+      <p>Gracias por tu compra</p>
+      <a class="download" href="https://drive.google.com/drive/folders/PEGA_AQUI_TU_LINK_REAL" target="_blank">
+        ⬇ Descargar Pack Musical
+      </a>
+    `;
+  } else {
+    resultado.innerHTML = `
+      <div class="error">❌ El pago no fue aprobado</div>
+      <p>Si pagaste, espera unos minutos o contáctanos.</p>
+    `;
   }
-
-  try {
-    const res = await fetch(
-      "https://ivanm-backend-ok.vercel.app/api/verify-payment?payment_id=" + paymentId
-    );
-
-    const data = await res.json();
-
-    if (data.approved) {
-      statusDiv.innerHTML = "<div class='ok'>✅ Pago aprobado</div>";
-      btn.style.display = "inline-block";
-    } else {
-      statusDiv.innerHTML = "<div class='error'>⏳ Pago no aprobado</div>";
-    }
-
-  } catch (e) {
-    statusDiv.innerHTML = "<div class='error'>❌ Error validando el pago</div>";
-  }
-})();
 </script>
 
 </body>
