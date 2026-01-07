@@ -37,6 +37,7 @@
       gap:12px;
       margin-bottom:14px;
       opacity:.95;
+      flex-wrap:wrap;
     }
     .brand{
       display:flex; align-items:center; gap:10px;
@@ -58,22 +59,10 @@
       border-radius:18px;
       overflow:hidden;
     }
-    .grid{
-      display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:0;
-    }
-    @media(max-width:900px){
-      .grid{grid-template-columns:1fr}
-    }
-    .left{
+    .content{
       padding:28px;
-      border-right:1px solid rgba(255,255,255,.08);
     }
-    @media(max-width:900px){
-      .left{border-right:none; border-bottom:1px solid rgba(255,255,255,.08)}
-    }
-    .right{padding:28px;}
+
     h1{
       margin:0 0 10px;
       font-size:30px;
@@ -96,11 +85,29 @@
       margin:10px 0 16px;
       font-size:14px;
     }
+
+    /* ✅ BLOQUE DE COMPRA ARRIBA */
+    .buybox{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.14);
+      border-radius:16px;
+      padding:16px;
+      margin:14px 0 16px;
+      display:grid;
+      gap:10px;
+    }
+    .buyrow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
     .price{
       font-size:34px;
       color:var(--accent);
-      font-weight:800;
-      margin:8px 0 6px;
+      font-weight:900;
+      margin:0;
     }
     .btn{
       width:100%;
@@ -108,7 +115,7 @@
       cursor:pointer;
       background:linear-gradient(180deg, var(--btn), var(--btn2));
       color:white;
-      font-weight:800;
+      font-weight:900;
       font-size:17px;
       padding:16px 18px;
       border-radius:12px;
@@ -116,11 +123,26 @@
     }
     .btn:active{transform:translateY(1px)}
     .small{
-      margin-top:10px;
+      margin-top:2px;
       font-size:13px;
       color:var(--muted);
       text-align:center;
     }
+
+    /* ✅ Imagen real */
+    .svgbox{
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.12);
+      border-radius:14px;
+      padding:14px;
+      margin-top:10px;
+    }
+    .note{
+      margin-top:10px;
+      font-size:12.5px;
+      color:rgba(234,242,255,.75);
+    }
+
     .list{
       margin:16px 0 0;
       padding:0;
@@ -144,6 +166,7 @@
     }
     .li b{display:block; margin-bottom:2px}
     .li span{color:var(--muted); font-size:13.5px; line-height:1.4}
+
     .steps{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -172,6 +195,7 @@
     }
     .step .t{font-weight:800; margin:0 0 6px}
     .step .d{margin:0; color:var(--muted); font-size:13.5px; line-height:1.35}
+
     .trust{
       margin-top:16px;
       padding:12px;
@@ -191,17 +215,13 @@
     }
     .contact a{color:#9bd5ff; text-decoration:none}
     .contact a:hover{text-decoration:underline}
-    .svgbox{
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(0,0,0,.12);
-      border-radius:14px;
-      padding:14px;
-      margin-top:10px;
-    }
-    .note{
-      margin-top:10px;
-      font-size:12.5px;
-      color:rgba(234,242,255,.75);
+
+    /* Separador suave */
+    .divider{
+      height:1px;
+      background:rgba(255,255,255,.08);
+      margin:18px 0;
+      border:0;
     }
   </style>
 </head>
@@ -219,102 +239,100 @@
     </div>
 
     <div class="card">
-      <div class="grid">
-        <!-- IZQUIERDA: EXPLICACIÓN (PRIMERA IMPRESIÓN) -->
-        <div class="left">
-          <h1>🎵 Pack Musical (+2000 canciones) para tu USB / PC / Radio</h1>
+      <div class="content">
 
-          <p class="sub">
-            Descarga este pack en tu computadora, pásalo a un <b>USB</b> y llévalo a donde quieras.
-            Conéctalo a <b>radio</b>, <b>computadora</b> o cualquier equipo que reproduzca música y escucha
-            <b>sin depender de internet</b>.
-          </p>
+        <!-- ✅ ARRIBA: LO MÁS IMPORTANTE PARA VENDER -->
+        <h1>🎵 Pack Musical (+2000 canciones) para tu USB / PC / Radio</h1>
+        <p class="sub">
+          Descárgalo en tu computadora, pásalo a un <b>USB</b> y llévalo a cualquier lugar.
+          Conéctalo a <b>radio</b>, <b>computadora</b> o equipos con USB y escucha <b>sin internet</b>.
+        </p>
 
-          <div class="highlight">✅ Música offline: lo descargas 1 vez y lo usas siempre</div>
+        <div class="highlight">✅ Música offline: lo descargas 1 vez y lo usas siempre</div>
 
-          <!-- ✅ ÚNICO CAMBIO: se reemplaza el SVG por imagen real -->
-          <div class="svgbox">
-            <img
-              src="assets/hero-pack.jpg"
-              alt="Descarga del pack musical y uso en USB y radio"
-              style="width:100%; height:auto; border-radius:12px; display:block; border:1px solid rgba(255,255,255,.10);"
-            />
-            <div class="note">
-              📌 Flujo simple: <b>Descargas</b> → lo pasas a <b>USB</b> → lo conectas a <b>radio/PC</b> y escuchas.
+        <div class="buybox">
+          <div class="buyrow">
+            <div>
+              <div style="font-size:14px;color:var(--muted);font-weight:700;">Precio</div>
+              <div class="price">S/ 1.00</div>
+            </div>
+            <div style="flex:1; min-width:220px;">
+              <button id="btnPagar" class="btn">Comprar ahora</button>
+              <div class="small" id="msg">Pago seguro con Mercado Pago</div>
             </div>
           </div>
 
-          <ul class="list">
-            <li class="li">
-              <div class="dot">✅</div>
-              <div>
-                <b>¿Para qué sirve?</b>
-                <span>Para tener música lista en tu USB/computadora y reproducirla en radios, parlantes, auto, negocios o eventos.</span>
-              </div>
-            </li>
-            <li class="li">
-              <div class="dot">📦</div>
-              <div>
-                <b>¿Qué recibes?</b>
-                <span>Acceso de descarga (automático) al pack musical. Lo guardas y lo usas cuando quieras.</span>
-              </div>
-            </li>
-            <li class="li">
-              <div class="dot">📶</div>
-              <div>
-                <b>No necesitas internet</b>
-                <span>Una vez descargado, funciona totalmente <b>offline</b>.</span>
-              </div>
-            </li>
-          </ul>
-
-          <div class="steps">
-            <div class="step">
-              <div class="n">PASO 1</div>
-              <p class="t">Pagas seguro</p>
-              <p class="d">Pago con Mercado Pago (rápido y confiable).</p>
-            </div>
-            <div class="step">
-              <div class="n">PASO 2</div>
-              <p class="t">Descargas en segundos</p>
-              <p class="d">Se habilita el botón de descarga automáticamente.</p>
-            </div>
-            <div class="step">
-              <div class="n">PASO 3</div>
-              <p class="t">Lo llevas a donde sea</p>
-              <p class="d">Lo pasas a USB y lo conectas a radio/PC/equipo.</p>
-            </div>
-          </div>
-
-          <div class="trust">
-            🔒 <b>Entrega automática</b> luego del pago.  
-            📲 <b>Soporte</b> por WhatsApp si necesitas ayuda con la descarga o instalación en USB.
-          </div>
-
-          <div class="contact">
-            <div>📞 WhatsApp: <b><a href="https://wa.me/51995496654" target="_blank" rel="noopener">+51 995 496 654</a></b></div>
-            <div>✉️ Correo: <b><a href="mailto:ivanmunozsolis37@gmail.com">ivanmunozsolis37@gmail.com</a></b></div>
+          <div style="color:var(--muted);font-size:13.5px;line-height:1.35;">
+            Luego del pago, se te redirige a la página de éxito para descargar automáticamente.
           </div>
         </div>
 
-        <!-- DERECHA: COMPRA -->
-        <div class="right">
-          <div style="font-size:14px;color:var(--muted);font-weight:700;margin-bottom:6px;">Producto</div>
-          <div style="font-size:22px;font-weight:900;margin-bottom:8px;">🎶 Pack Musical Profesional</div>
+        <hr class="divider"/>
 
-          <div class="price">S/ 1.00</div>
-          <div style="color:var(--muted);font-size:13.5px;line-height:1.35;margin-bottom:14px;">
-            Pago seguro con Mercado Pago. Luego del pago, se te redirige a la página de éxito para descargar.
-          </div>
-
-          <button id="btnPagar" class="btn">Comprar ahora</button>
-          <div class="small" id="msg">Pago seguro con Mercado Pago</div>
-
-          <div class="trust" style="margin-top:14px;">
-            💡 <b>Recomendado para:</b> Rockolas, negocios, movilidad, eventos y uso personal.  
-            📌 Ideal si quieres música lista en USB y sin interrupciones por internet.
+        <!-- ✅ ABAJO: imagen real + explicación (para que entiendan) -->
+        <div class="svgbox">
+          <img
+            src="assets/hero-pack.jpg"
+            alt="Descarga del pack musical y uso en USB y radio"
+            style="width:100%; height:auto; border-radius:12px; display:block; border:1px solid rgba(255,255,255,.10);"
+          />
+          <div class="note">
+            📌 Flujo simple: <b>Descargas</b> → lo pasas a <b>USB</b> → lo conectas a <b>radio/PC</b> y escuchas.
           </div>
         </div>
+
+        <ul class="list">
+          <li class="li">
+            <div class="dot">✅</div>
+            <div>
+              <b>¿Para qué sirve?</b>
+              <span>Para tener música lista en tu USB/computadora y reproducirla en radios, parlantes, auto, negocios o eventos.</span>
+            </div>
+          </li>
+          <li class="li">
+            <div class="dot">📦</div>
+            <div>
+              <b>¿Qué recibes?</b>
+              <span>Acceso de descarga (automático) al pack musical. Lo guardas y lo usas cuando quieras.</span>
+            </div>
+          </li>
+          <li class="li">
+            <div class="dot">📶</div>
+            <div>
+              <b>No necesitas internet</b>
+              <span>Una vez descargado, funciona totalmente <b>offline</b>.</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="steps">
+          <div class="step">
+            <div class="n">PASO 1</div>
+            <p class="t">Pagas seguro</p>
+            <p class="d">Pago con Mercado Pago (rápido y confiable).</p>
+          </div>
+          <div class="step">
+            <div class="n">PASO 2</div>
+            <p class="t">Descargas en segundos</p>
+            <p class="d">Se habilita el botón de descarga automáticamente.</p>
+          </div>
+          <div class="step">
+            <div class="n">PASO 3</div>
+            <p class="t">Lo llevas a donde sea</p>
+            <p class="d">Lo pasas a USB y lo conectas a radio/PC/equipo.</p>
+          </div>
+        </div>
+
+        <div class="trust">
+          🔒 <b>Entrega automática</b> luego del pago.  
+          📲 <b>Soporte</b> por WhatsApp si necesitas ayuda con la descarga o instalación en USB.
+        </div>
+
+        <div class="contact">
+          <div>📞 WhatsApp: <b><a href="https://wa.me/51995496654" target="_blank" rel="noopener">+51 995 496 654</a></b></div>
+          <div>✉️ Correo: <b><a href="mailto:ivanmunozsolis37@gmail.com">ivanmunozsolis37@gmail.com</a></b></div>
+        </div>
+
       </div>
     </div>
   </div>
