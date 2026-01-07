@@ -2,303 +2,350 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pack Musical Profesional | Ivan M. Innova Group</title>
-  <meta name="description" content="Descarga un pack de +2000 músicas para USB, PC y radio. Compra segura con Mercado Pago." />
-
   <style>
     :root{
-      --bg1:#071421;
-      --bg2:#0a1d2e;
-      --card:rgba(10, 20, 32, .72);
-      --stroke:rgba(255,255,255,.10);
-      --text:#e8f0ff;
-      --muted:rgba(232,240,255,.70);
-      --accent:#18b3ff;
-      --accent2:#2ef49a;
-      --danger:#ff4d4d;
-      --shadow:0 14px 45px rgba(0,0,0,.35);
-      --radius:18px;
+      --bg1:#07131f;
+      --bg2:#0b1b2a;
+      --card:#0b1522cc;
+      --stroke:#1a2a3a;
+      --text:#eaf2ff;
+      --muted:#b8c7da;
+      --accent:#10b981;
+      --btn:#0aa6ff;
+      --btn2:#0789d1;
+      --warning:#fbbf24;
     }
-
-    *{ box-sizing:border-box; }
+    *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       color:var(--text);
-      background: radial-gradient(1200px 600px at 50% 15%, rgba(24,179,255,.18), transparent 55%),
-                  radial-gradient(900px 500px at 20% 80%, rgba(46,244,154,.14), transparent 55%),
-                  linear-gradient(180deg, var(--bg1), var(--bg2));
+      background: radial-gradient(1200px 600px at 50% 30%, #0f2a3f 0%, var(--bg2) 40%, var(--bg1) 100%);
       min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:28px 14px;
+      padding:24px;
     }
-
-    .wrap{
-      width:min(980px, 100%);
-      display:grid;
-      gap:18px;
-      grid-template-columns: 1.15fr .85fr;
-    }
-
-    @media (max-width: 860px){
-      .wrap{ grid-template-columns: 1fr; }
-    }
-
-    .card{
-      background: var(--card);
-      border: 1px solid var(--stroke);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-      padding:22px;
-      backdrop-filter: blur(12px);
-    }
-
-    .title{
+    .wrap{width:100%; max-width:980px;}
+    .topbar{
       display:flex;
+      justify-content:space-between;
       align-items:center;
-      gap:10px;
-      margin:0 0 6px;
-      font-size:28px;
+      gap:12px;
+      margin-bottom:14px;
+      opacity:.95;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700;
       letter-spacing:.2px;
     }
-    .subtitle{
+    .badge{
+      font-size:12px;
+      color:#0b1b2a;
+      background:linear-gradient(90deg, #34d399, #60a5fa);
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:700;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+      border-radius:18px;
+      overflow:hidden;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:0;
+    }
+    @media(max-width:900px){
+      .grid{grid-template-columns:1fr}
+    }
+    .left{
+      padding:28px;
+      border-right:1px solid rgba(255,255,255,.08);
+    }
+    @media(max-width:900px){
+      .left{border-right:none; border-bottom:1px solid rgba(255,255,255,.08)}
+    }
+    .right{padding:28px;}
+    h1{
+      margin:0 0 10px;
+      font-size:30px;
+      line-height:1.15;
+    }
+    .sub{
       margin:0 0 14px;
       color:var(--muted);
-      line-height:1.45;
       font-size:15px;
+      line-height:1.5;
     }
-
+    .highlight{
+      display:inline-block;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(16,185,129,.12);
+      color:#bff5df;
+      padding:8px 12px;
+      border-radius:12px;
+      font-weight:700;
+      margin:10px 0 16px;
+      font-size:14px;
+    }
     .price{
-      margin:16px 0 14px;
       font-size:34px;
+      color:var(--accent);
       font-weight:800;
-      color: var(--accent2);
-      letter-spacing:.3px;
-      text-align:center;
+      margin:8px 0 6px;
     }
-
     .btn{
       width:100%;
-      border:0;
+      border:none;
       cursor:pointer;
-      border-radius: 14px;
-      padding: 14px 16px;
-      font-size: 16px;
-      font-weight: 700;
-      background: linear-gradient(90deg, rgba(24,179,255,1), rgba(0,138,255,1));
+      background:linear-gradient(180deg, var(--btn), var(--btn2));
       color:white;
-      box-shadow: 0 10px 25px rgba(0,138,255,.18);
-      transition: transform .08s ease;
+      font-weight:800;
+      font-size:17px;
+      padding:16px 18px;
+      border-radius:12px;
+      box-shadow:0 12px 22px rgba(10,166,255,.22);
     }
-    .btn:active{ transform: scale(.99); }
-    .btn[disabled]{
-      opacity:.6;
-      cursor:not-allowed;
-      box-shadow:none;
-    }
-
-    .fine{
-      margin:10px 0 0;
+    .btn:active{transform:translateY(1px)}
+    .small{
+      margin-top:10px;
+      font-size:13px;
+      color:var(--muted);
       text-align:center;
-      font-size:12.8px;
-      color:rgba(232,240,255,.65);
     }
-
-    /* ---- AQUÍ VA TU "SVGBOX" (ahora con foto real) ---- */
-    .svgbox{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-    .note{
-      font-size:13.5px;
-      color: rgba(232,240,255,.78);
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.08);
-      padding:10px 12px;
-      border-radius: 12px;
-      line-height:1.35;
-    }
-
     .list{
-      margin:14px 0 0;
+      margin:16px 0 0;
       padding:0;
       list-style:none;
       display:grid;
       gap:10px;
     }
-    .list li{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
+    .li{
+      display:flex; gap:10px; align-items:flex-start;
       padding:10px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,.08);
-      background: rgba(255,255,255,.04);
-      color: rgba(232,240,255,.88);
-      line-height:1.35;
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px;
+      background:rgba(0,0,0,.12);
+    }
+    .dot{
+      width:22px; height:22px; border-radius:8px;
+      background:rgba(96,165,250,.18);
+      display:flex; align-items:center; justify-content:center;
+      flex:0 0 22px;
       font-size:14px;
     }
-
-    .rightTop{
-      display:flex;
-      flex-direction:column;
+    .li b{display:block; margin-bottom:2px}
+    .li span{color:var(--muted); font-size:13.5px; line-height:1.4}
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
       gap:10px;
-    }
-
-    .contact{
-      border-top:1px solid rgba(255,255,255,.10);
       margin-top:14px;
-      padding-top:14px;
+    }
+    @media(max-width:520px){
+      .steps{grid-template-columns:1fr}
+    }
+    .step{
+      padding:12px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.12);
+    }
+    .step .n{
+      display:inline-block;
+      font-weight:900;
+      font-size:12px;
+      background:rgba(251,191,36,.12);
+      border:1px solid rgba(251,191,36,.25);
+      color:#ffe7a3;
+      padding:4px 8px;
+      border-radius:999px;
+      margin-bottom:8px;
+    }
+    .step .t{font-weight:800; margin:0 0 6px}
+    .step .d{margin:0; color:var(--muted); font-size:13.5px; line-height:1.35}
+    .trust{
+      margin-top:16px;
+      padding:12px;
+      border-radius:12px;
+      border:1px dashed rgba(255,255,255,.18);
+      background:rgba(255,255,255,.05);
+      color:var(--muted);
+      font-size:13.5px;
+      line-height:1.45;
+    }
+    .contact{
+      margin-top:14px;
       display:grid;
       gap:8px;
-      color:rgba(232,240,255,.85);
-      font-size:13.8px;
+      font-size:14px;
+      color:var(--muted);
     }
-    .contact a{
-      color: rgba(232,240,255,.95);
-      text-decoration:none;
-    }
-    .contact a:hover{ text-decoration:underline; }
-
-    .whatsapp{
+    .contact a{color:#9bd5ff; text-decoration:none}
+    .contact a:hover{text-decoration:underline}
+    .svgbox{
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(0,0,0,.12);
+      border-radius:14px;
+      padding:14px;
       margin-top:10px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(46,244,154,.07);
-      padding:12px;
-      border-radius: 14px;
     }
-    .whatsapp .wtext{
-      color: rgba(232,240,255,.9);
-      font-size:13.5px;
-      line-height:1.35;
+    .note{
+      margin-top:10px;
+      font-size:12.5px;
+      color:rgba(234,242,255,.75);
     }
-    .wbtn{
-      border:0;
-      cursor:pointer;
-      border-radius: 12px;
-      padding: 10px 12px;
-      font-size: 14px;
-      font-weight: 800;
-      background: rgba(46,244,154,.95);
-      color:#062114;
-      white-space:nowrap;
-    }
-
-    .status{
-      margin-top:12px;
-      font-size:13px;
-      color: rgba(232,240,255,.75);
-      text-align:center;
-      min-height:18px;
-    }
-    .status.err{ color: var(--danger); }
   </style>
 </head>
-
 <body>
   <div class="wrap">
-    <!-- IZQUIERDA: explicación + imagen real -->
-    <section class="card">
-      <h1 class="title">🎵 Pack Musical Profesional</h1>
-      <p class="subtitle">
-        Un pack de <b>+2000 músicas</b> listo para tu <b>computadora</b>, <b>USB</b> y <b>radio</b>.
-        Lo descargas una vez y lo puedes llevar a cualquier lugar para escuchar sin depender de internet.
-      </p>
-
-      <!-- ✅ AQUÍ ESTÁ EL CAMBIO QUE PEDISTE (reemplazo del SVG) -->
-      <div class="svgbox">
-        <img
-          src="assets/hero-pack.jpg"
-          alt="Descarga del pack musical y uso en USB y radio"
-          style="width:100%; height:auto; border-radius:12px; display:block; border:1px solid rgba(255,255,255,.10);"
-        />
-        <div class="note">
-          📌 Flujo simple: <b>Descargas</b> → lo pasas a <b>USB</b> → lo conectas a <b>radio/PC</b> y escuchas.
+    <div class="topbar">
+      <div class="brand">
+        <span style="font-size:18px;">🎧</span>
+        <div>
+          <div>Ivan M. Innova Group</div>
+          <div style="font-size:12px;color:var(--muted);font-weight:600;">Venta digital • Descarga automática</div>
         </div>
       </div>
+      <div class="badge">PAGO SEGURO • MERCADO PAGO</div>
+    </div>
 
-      <ul class="list">
-        <li>✅ Compatible con: <b>PC/Laptop</b>, <b>USB</b>, radios con USB, autoestéreos y más.</li>
-        <li>✅ Ideal para: <b>rockolas</b>, <b>negocios</b>, <b>eventos</b> y uso personal.</li>
-        <li>✅ Descarga segura y rápida después del pago.</li>
-      </ul>
+    <div class="card">
+      <div class="grid">
+        <!-- IZQUIERDA: EXPLICACIÓN (PRIMERA IMPRESIÓN) -->
+        <div class="left">
+          <h1>🎵 Pack Musical (+2000 canciones) para tu USB / PC / Radio</h1>
 
-      <div class="contact">
-        <div><b>Empresa:</b> Ivan M. Innova Group</div>
-        <div><b>Soporte:</b> <a href="mailto:ivanmunozsolis37@gmail.com">ivanmunozsolis37@gmail.com</a></div>
-        <div><b>WhatsApp:</b> <a href="https://wa.me/51995496654" target="_blank" rel="noopener">+51 995 496 654</a></div>
-      </div>
+          <p class="sub">
+            Descarga este pack en tu computadora, pásalo a un <b>USB</b> y llévalo a donde quieras.
+            Conéctalo a <b>radio</b>, <b>computadora</b> o cualquier equipo que reproduzca música y escucha
+            <b>sin depender de internet</b>.
+          </p>
 
-      <div class="whatsapp">
-        <div class="wtext">
-          ¿Tienes dudas antes de comprar? Escríbeme y dime:<br/>
-          <b>“Vengo del pack musical”</b> ✅
+          <div class="highlight">✅ Música offline: lo descargas 1 vez y lo usas siempre</div>
+
+          <!-- ✅ ÚNICO CAMBIO: se reemplaza el SVG por imagen real -->
+          <div class="svgbox">
+            <img
+              src="assets/hero-pack.jpg"
+              alt="Descarga del pack musical y uso en USB y radio"
+              style="width:100%; height:auto; border-radius:12px; display:block; border:1px solid rgba(255,255,255,.10);"
+            />
+            <div class="note">
+              📌 Flujo simple: <b>Descargas</b> → lo pasas a <b>USB</b> → lo conectas a <b>radio/PC</b> y escuchas.
+            </div>
+          </div>
+
+          <ul class="list">
+            <li class="li">
+              <div class="dot">✅</div>
+              <div>
+                <b>¿Para qué sirve?</b>
+                <span>Para tener música lista en tu USB/computadora y reproducirla en radios, parlantes, auto, negocios o eventos.</span>
+              </div>
+            </li>
+            <li class="li">
+              <div class="dot">📦</div>
+              <div>
+                <b>¿Qué recibes?</b>
+                <span>Acceso de descarga (automático) al pack musical. Lo guardas y lo usas cuando quieras.</span>
+              </div>
+            </li>
+            <li class="li">
+              <div class="dot">📶</div>
+              <div>
+                <b>No necesitas internet</b>
+                <span>Una vez descargado, funciona totalmente <b>offline</b>.</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="steps">
+            <div class="step">
+              <div class="n">PASO 1</div>
+              <p class="t">Pagas seguro</p>
+              <p class="d">Pago con Mercado Pago (rápido y confiable).</p>
+            </div>
+            <div class="step">
+              <div class="n">PASO 2</div>
+              <p class="t">Descargas en segundos</p>
+              <p class="d">Se habilita el botón de descarga automáticamente.</p>
+            </div>
+            <div class="step">
+              <div class="n">PASO 3</div>
+              <p class="t">Lo llevas a donde sea</p>
+              <p class="d">Lo pasas a USB y lo conectas a radio/PC/equipo.</p>
+            </div>
+          </div>
+
+          <div class="trust">
+            🔒 <b>Entrega automática</b> luego del pago.  
+            📲 <b>Soporte</b> por WhatsApp si necesitas ayuda con la descarga o instalación en USB.
+          </div>
+
+          <div class="contact">
+            <div>📞 WhatsApp: <b><a href="https://wa.me/51995496654" target="_blank" rel="noopener">+51 995 496 654</a></b></div>
+            <div>✉️ Correo: <b><a href="mailto:ivanmunozsolis37@gmail.com">ivanmunozsolis37@gmail.com</a></b></div>
+          </div>
         </div>
-        <button class="wbtn" id="btnWsp">Abrir WhatsApp</button>
+
+        <!-- DERECHA: COMPRA -->
+        <div class="right">
+          <div style="font-size:14px;color:var(--muted);font-weight:700;margin-bottom:6px;">Producto</div>
+          <div style="font-size:22px;font-weight:900;margin-bottom:8px;">🎶 Pack Musical Profesional</div>
+
+          <div class="price">S/ 1.00</div>
+          <div style="color:var(--muted);font-size:13.5px;line-height:1.35;margin-bottom:14px;">
+            Pago seguro con Mercado Pago. Luego del pago, se te redirige a la página de éxito para descargar.
+          </div>
+
+          <button id="btnPagar" class="btn">Comprar ahora</button>
+          <div class="small" id="msg">Pago seguro con Mercado Pago</div>
+
+          <div class="trust" style="margin-top:14px;">
+            💡 <b>Recomendado para:</b> Rockolas, negocios, movilidad, eventos y uso personal.  
+            📌 Ideal si quieres música lista en USB y sin interrupciones por internet.
+          </div>
+        </div>
       </div>
-    </section>
-
-    <!-- DERECHA: compra -->
-    <aside class="card rightTop">
-      <h2 style="margin:0 0 6px; font-size:18px;">Compra rápida</h2>
-      <p class="subtitle" style="margin-top:0;">
-        Presiona <b>Comprar ahora</b> y te llevará a Mercado Pago.
-      </p>
-
-      <div class="price">S/ 1.00</div>
-
-      <button class="btn" id="btnBuy">Comprar ahora</button>
-      <div class="status" id="status"></div>
-
-      <p class="fine">Pago seguro con Mercado Pago</p>
-    </aside>
+    </div>
   </div>
 
   <script>
-    // ✅ Cambia SOLO si tu backend usa otro dominio/ruta:
-    const API_BASE = "https://ivanm-backend-ok.vercel.app"; // tu Vercel
-    const ENDPOINT = API_BASE + "/api/create-checkout";
+    // ✅ TU BACKEND (ivanm-backend-ok)
+    const CHECKOUT_URL = "https://ivanm-backend-ok.vercel.app/api/create-checkout";
 
-    // WhatsApp con mensaje automático
-    const btnWsp = document.getElementById("btnWsp");
-    btnWsp.addEventListener("click", () => {
-      const msg = encodeURIComponent("Hola, vengo del pack musical. Tengo una consulta antes de comprar.");
-      window.open("https://wa.me/51995496654?text=" + msg, "_blank");
-    });
+    const btn = document.getElementById("btnPagar");
+    const msg = document.getElementById("msg");
 
-    // Comprar
-    const btnBuy = document.getElementById("btnBuy");
-    const status = document.getElementById("status");
+    btn.addEventListener("click", async () => {
+      try{
+        btn.disabled = true;
+        msg.textContent = "Creando pago...";
 
-    btnBuy.addEventListener("click", async () => {
-      try {
-        btnBuy.disabled = true;
-        status.className = "status";
-        status.textContent = "Redirigiendo a Mercado Pago...";
-
-        // Llamada al backend para crear el checkout
-        const r = await fetch(ENDPOINT, { method: "GET" });
+        const r = await fetch(CHECKOUT_URL, { method: "GET" });
         const data = await r.json();
 
-        // Se espera: { init_point: "https://www.mercadopago.com.pe/checkout/v1/redirect?pref_id=..." }
-        if (!data || !data.init_point) {
-          throw new Error("No se pudo crear el pago.");
+        if(!data || !data.init_point){
+          throw new Error("Respuesta inválida del servidor");
         }
 
+        msg.textContent = "Redirigiendo a Mercado Pago...";
         window.location.href = data.init_point;
-      } catch (e) {
-        status.className = "status err";
-        status.textContent = "Error al crear el pago. Intenta de nuevo.";
-        btnBuy.disabled = false;
+
+      }catch(e){
+        console.error(e);
+        msg.textContent = "Error al crear el pago. Intenta de nuevo.";
+        alert("Error al crear el pago");
+        btn.disabled = false;
       }
     });
   </script>
