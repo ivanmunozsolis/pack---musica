@@ -17,8 +17,6 @@
       --btn:#0aa6ff;
       --btn2:#0789d1;
       --stroke: rgba(255,255,255,.10);
-      --soft: rgba(255,255,255,.05);
-      --soft2: rgba(0,0,0,.12);
       --shadow: 0 16px 40px rgba(0,0,0,.35);
     }
 
@@ -43,19 +41,16 @@
       align-items:center;
       gap:12px;
       margin-bottom:14px;
-      opacity:.95;
       flex-wrap:wrap;
     }
     .brand{
       display:flex; align-items:center; gap:10px;
       font-weight:800;
-      letter-spacing:.2px;
     }
     .brand small{
       display:block;
       font-weight:700;
       color:var(--muted);
-      margin-top:2px;
     }
     .badge{
       font-size:12px;
@@ -78,8 +73,6 @@
     h1{
       margin:0 0 10px;
       font-size:30px;
-      line-height:1.15;
-      letter-spacing:.2px;
     }
     .sub{
       margin:0 0 14px;
@@ -100,29 +93,19 @@
       font-size:14px;
     }
 
-    /* CTA */
     .buybox{
       border:1px solid var(--stroke);
       background:rgba(0,0,0,.14);
       border-radius:16px;
       padding:16px;
-      margin:12px 0 12px;
+      margin:12px 0;
       display:grid;
       gap:12px;
-    }
-    .buyrow{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
     }
     .price{
       font-size:36px;
       color:var(--accent);
       font-weight:900;
-      margin:0;
-      line-height:1;
     }
     .btn{
       width:100%;
@@ -132,55 +115,16 @@
       color:white;
       font-weight:900;
       font-size:17px;
-      padding:16px 18px;
+      padding:16px;
       border-radius:12px;
-      box-shadow:0 12px 22px rgba(10,166,255,.22);
     }
-    .btn:active{transform:translateY(1px)}
     .small{
-      margin-top:6px;
       font-size:13px;
       color:var(--muted);
       text-align:center;
       min-height:18px;
     }
 
-    /* trust pills */
-    .trustRow{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:10px;
-    }
-    @media(max-width:900px){
-      .trustRow{ grid-template-columns: 1fr 1fr; }
-    }
-    @media(max-width:520px){
-      .trustRow{ grid-template-columns: 1fr; }
-    }
-    .tcard{
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(255,255,255,.04);
-      border-radius:14px;
-      padding:12px;
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      min-height:72px;
-    }
-    .ico{
-      width:30px; height:30px;
-      border-radius:10px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:rgba(96,165,250,.18);
-      flex: 0 0 30px;
-      font-size:14px;
-    }
-    .tcard b{ display:block; margin-bottom:2px; }
-    .tcard span{ color:var(--muted); font-size:13.3px; line-height:1.35; }
-
-    /* Media */
     .mediaGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -190,19 +134,14 @@
     @media(max-width:900px){
       .mediaGrid{ grid-template-columns: 1fr; }
     }
+
     .box{
       border:1px solid rgba(255,255,255,.08);
       background:rgba(0,0,0,.12);
       border-radius:14px;
       padding:14px;
     }
-    .boxTitle{
-      font-weight:900;
-      margin:0 0 10px;
-      font-size:14px;
-      color:rgba(234,242,255,.92);
-      letter-spacing:.2px;
-    }
+
     .heroimg, .demogif{
       width:100%;
       height:auto;
@@ -210,136 +149,37 @@
       display:block;
       border:1px solid rgba(255,255,255,.10);
     }
+
     .note{
       margin-top:10px;
       font-size:12.5px;
       color:rgba(234,242,255,.75);
-      line-height:1.35;
     }
 
-    .divider{
-      height:1px;
-      background:rgba(255,255,255,.08);
-      margin:18px 0;
-      border:0;
-    }
-
-    /* Feature list */
-    .list{
-      margin:0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap:10px;
-    }
-    .li{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:10px 12px;
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:12px;
-      background:rgba(0,0,0,.12);
-    }
-    .dot{
-      width:22px; height:22px; border-radius:8px;
-      background:rgba(96,165,250,.18);
-      display:flex; align-items:center; justify-content:center;
-      flex:0 0 22px;
-      font-size:14px;
-    }
-    .li b{display:block; margin-bottom:2px}
-    .li span{color:var(--muted); font-size:13.5px; line-height:1.4}
-
-    /* FAQ */
-    details{
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(0,0,0,.12);
-      border-radius:12px;
-      padding:10px 12px;
-    }
-    summary{
-      cursor:pointer;
-      font-weight:900;
-      color:rgba(234,242,255,.95);
-    }
-    details p{
-      margin:8px 0 0;
-      color:var(--muted);
-      font-size:13.5px;
-      line-height:1.45;
-    }
-
-    /* Contact */
-    .trust{
-      margin-top:12px;
-      padding:12px;
-      border-radius:12px;
-      border:1px dashed rgba(255,255,255,.18);
-      background:rgba(255,255,255,.05);
-      color:var(--muted);
-      font-size:13.5px;
-      line-height:1.45;
-    }
-    .contact{
-      margin-top:12px;
-      display:grid;
-      gap:8px;
-      font-size:14px;
-      color:var(--muted);
-    }
-    .contact a{color:#9bd5ff; text-decoration:none}
-    .contact a:hover{text-decoration:underline}
-
-    /* WhatsApp CTA */
-    .waBtn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      width:100%;
-      margin-top:10px;
-      padding:14px 16px;
-      border-radius:12px;
-      background:linear-gradient(180deg, #22c55e, #16a34a);
-      color:white;
-      font-weight:900;
-      text-decoration:none;
-      border:0;
-      cursor:pointer;
-    }
-
-    /* Floating WhatsApp */
     .waFloat{
       position:fixed;
       right:18px;
       bottom:18px;
       z-index:9999;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
       padding:12px 14px;
       border-radius:999px;
-      background:rgba(34,197,94,.95);
-      color:#072012;
+      background:#22c55e;
+      color:#052010;
       font-weight:900;
       text-decoration:none;
       box-shadow:0 16px 30px rgba(0,0,0,.35);
-    }
-    .waFloat span{
-      background:rgba(255,255,255,.2);
-      padding:6px 10px;
-      border-radius:999px;
-      color:#052010;
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
+
     <div class="topbar">
       <div class="brand">
-        <span style="font-size:18px;">🎧</span>
+        🎧
         <div>
-          <div>Ivan M. Innova Group</div>
+          Ivan M. Innova Group
           <small>Venta digital • Descarga automática</small>
         </div>
       </div>
@@ -351,143 +191,44 @@
 
         <h1>🎵 Pack Musical (+2000 canciones) para tu USB / PC / Radio</h1>
         <p class="sub">
-          Descárgalo en tu computadora, pásalo a un <b>USB</b> y llévalo a cualquier lugar.
-          Conéctalo a <b>radio</b>, <b>computadora</b> o equipos con USB y escucha <b>sin depender de internet</b>.
+          Descárgalo una vez, pásalo a un USB y úsalo en radios, computadoras o equipos de sonido,
+          <b>sin internet</b>.
         </p>
 
-        <div class="highlight">✅ Música OFFLINE: lo descargas 1 vez y lo usas siempre</div>
+        <div class="highlight">✅ Música OFFLINE: lo descargas una vez y lo usas siempre</div>
 
         <div class="buybox">
-          <div class="buyrow">
-            <div>
-              <div style="font-size:14px;color:var(--muted);font-weight:900;">Precio</div>
-              <div class="price">S/ 5.00</div>
-            </div>
-
-            <div style="flex:1; min-width:240px;">
-              <button id="btnPagar" class="btn">Comprar ahora</button>
-              <div class="small" id="msg">Pago seguro con Mercado Pago</div>
-            </div>
-          </div>
-
-          <div class="trustRow">
-            <div class="tcard">
-              <div class="ico">⚡</div>
-              <div>
-                <b>Entrega automática</b>
-                <span>Pagas y te redirige a la descarga en segundos.</span>
-              </div>
-            </div>
-            <div class="tcard">
-              <div class="ico">🛡️</div>
-              <div>
-                <b>Pago seguro</b>
-                <span>Procesado por Mercado Pago (confiable).</span>
-              </div>
-            </div>
-            <div class="tcard">
-              <div class="ico">💬</div>
-              <div>
-                <b>Soporte WhatsApp</b>
-                <span>Te ayudamos si no te sale la descarga.</span>
-              </div>
-            </div>
-            <div class="tcard">
-              <div class="ico">✅</div>
-              <div>
-                <b>Asistencia garantizada</b>
-                <span>Te guiamos para pasarlo a USB y usarlo.</span>
-              </div>
-            </div>
-          </div>
+          <div class="price">S/ 5.00</div>
+          <button id="btnPagar" class="btn">Comprar ahora</button>
+          <div class="small" id="msg">Pago seguro con Mercado Pago</div>
         </div>
 
         <!-- FOTO + GIF -->
         <div class="mediaGrid">
           <div class="box">
-            <div class="boxTitle">📷 FOTO REAL</div>
-            <img class="heroimg" src="assets/hero-pack.jpg" alt="Pack musical para descargar y usar en USB/radio" />
-            <div class="note">📌 Flujo simple: <b>Descargas</b> → lo pasas a <b>USB</b> → lo conectas a <b>radio/PC</b> y escuchas.</div>
+            <img class="heroimg" src="assets/hero-pack.jpg" alt="Descarga del pack musical y uso en USB y radio">
+            <div class="note">📌 Descargas → USB → Radio / PC</div>
           </div>
 
           <div class="box">
-            <div class="boxTitle"></div>
-            <img class="demogif" src="assets/demo.gif" alt="Demo: descargar, USB y conectar a radio" />
-            <div class="note"> <b>assets/demo.gif</b>.</div>
+            <img
+              class="demogif"
+              src="assets/demo.gif"
+              alt="Demostración del pack musical en uso"
+            />
           </div>
-        </div>
-
-        <hr class="divider"/>
-
-        <!-- QUÉ INCLUYE -->
-        <div class="box">
-          <div class="boxTitle">📦 ¿Qué incluye este pack?</div>
-          <ul class="list">
-            <li class="li">
-              <div class="dot">🎶</div>
-              <div><b>+2000 canciones</b><span>Listas para escuchar offline (USB/PC/radio).</span></div>
-            </li>
-            <li class="li">
-              <div class="dot">⬇️</div>
-              <div><b>Descarga automática</b><span>Se habilita solo cuando el pago está aprobado.</span></div>
-            </li>
-            <li class="li">
-              <div class="dot">📲</div>
-              <div><b>Soporte incluido</b><span>Te ayudamos por WhatsApp si algo no te sale.</span></div>
-            </li>
-          </ul>
-
-          <button id="btnWsp" class="waBtn">💬 Tengo dudas — Abrir WhatsApp</button>
-          <div class="note">Se escribirá: <b>“Vengo del pack musical”</b> automáticamente.</div>
-        </div>
-
-        <hr class="divider"/>
-
-        <!-- FAQ -->
-        <div class="box">
-          <div class="boxTitle">❓ Preguntas frecuentes</div>
-          <div style="display:grid; gap:10px;">
-            <details>
-              <summary>¿Necesito internet para escuchar?</summary>
-              <p>No. Solo necesitas internet para <b>descargar una vez</b>. Luego lo usas totalmente <b>offline</b>.</p>
-            </details>
-            <details>
-              <summary>¿Funciona en mi radio o auto?</summary>
-              <p>Si tu radio/autoestéreo reproduce desde USB o desde PC, sí. Si no estás seguro, escríbeme por WhatsApp.</p>
-            </details>
-            <details>
-              <summary>¿Qué pasa si no me sale la descarga?</summary>
-              <p>Te atendemos por WhatsApp y lo solucionamos contigo (Drive/USB/PC). Soporte incluido.</p>
-            </details>
-          </div>
-        </div>
-
-        <div class="trust">
-          🔒 <b>Entrega automática</b> luego del pago.  
-          📲 <b>Soporte</b> por WhatsApp si necesitas ayuda con la descarga o el USB.
-        </div>
-
-        <div class="contact">
-          <div>🏢 Empresa: <b>Ivan M. Innova Group</b></div>
-          <div>📞 WhatsApp: <b><a href="https://wa.me/51995496654" target="_blank" rel="noopener">+51 995 496 654</a></b></div>
-          <div>✉️ Correo: <b><a href="mailto:ivanmunozsolis37@gmail.com">ivanmunozsolis37@gmail.com</a></b></div>
         </div>
 
       </div>
     </div>
   </div>
 
-  <!-- WhatsApp flotante -->
   <a class="waFloat"
-     href="https://wa.me/51995496654?text=Hola%2C%20vengo%20del%20Pack%20Musical%20Profesional%20(Ivan%20M.%20Innova%20Group).%20Tengo%20una%20duda%3A%20"
-     target="_blank" rel="noopener">
-    🟢 <span>WhatsApp</span>
-  </a>
+     href="https://wa.me/51995496654?text=Hola%2C%20vengo%20del%20Pack%20Musical%20Profesional.%20Tengo%20una%20duda."
+     target="_blank">WhatsApp</a>
 
   <script>
-    // ✅ TU BACKEND (ivanm-backend-ok)
     const CHECKOUT_URL = "https://ivanm-backend-ok.vercel.app/api/create-checkout";
-
     const btn = document.getElementById("btnPagar");
     const msg = document.getElementById("msg");
 
@@ -495,30 +236,13 @@
       try{
         btn.disabled = true;
         msg.textContent = "Creando pago...";
-
-        const r = await fetch(CHECKOUT_URL, { method: "GET" });
-        const data = await r.json();
-
-        if(!data || !data.init_point){
-          throw new Error("Respuesta inválida del servidor");
-        }
-
-        msg.textContent = "Redirigiendo a Mercado Pago...";
-        window.location.href = data.init_point;
-
-      }catch(e){
-        console.error(e);
-        msg.textContent = "Error al crear el pago. Intenta de nuevo.";
-        alert("Error al crear el pago");
+        const r = await fetch(CHECKOUT_URL);
+        const d = await r.json();
+        window.location.href = d.init_point;
+      }catch{
+        msg.textContent = "Error al crear el pago";
         btn.disabled = false;
       }
-    });
-
-    // WhatsApp con texto automático
-    const btnWsp = document.getElementById("btnWsp");
-    btnWsp.addEventListener("click", () => {
-      const text = encodeURIComponent("Hola, vengo del pack musical. Tengo una duda antes de comprar.");
-      window.open("https://wa.me/51995496654?text=" + text, "_blank");
     });
   </script>
 </body>
